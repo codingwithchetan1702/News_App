@@ -5,10 +5,10 @@ const Newsbord = ({ category }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     const fetchNews = async () => {
-      const apiKey = '8cd3229158c04407bfce8e73ca96a6db';
+      const apiKey = "8cd3229158c04407bfce8e73ca96a6db" || process.env.REACT_APP_NEWS_API_KEY;
       const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
 
       try {
@@ -37,7 +37,7 @@ const Newsbord = ({ category }) => {
   if (error) {
     return (
       <h1 className="text-center text-danger">
-        Error: {error}. Please check your internet connection.
+        Error: {error}. Please check your internet connection or API key.
       </h1>
     );
   }
@@ -68,4 +68,3 @@ const Newsbord = ({ category }) => {
 };
 
 export default Newsbord;
-
