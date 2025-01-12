@@ -5,14 +5,21 @@ const Newsbord = ({ category }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const fetchNews = async () => {
-      const Api_key = import.meta.env.VITE_API_KEY
+      const Api_key = import.meta.env.VITE_API_KEY;
       const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${Api_key}`;
 
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Upgrade-Insecure-Requests': '1', // Adding this header
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to fetch news. Status: ${response.status}`);
