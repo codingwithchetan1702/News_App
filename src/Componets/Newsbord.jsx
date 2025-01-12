@@ -8,7 +8,8 @@ const Newsbord = ({ category }) => {
   
   useEffect(() => {
     const fetchNews = async () => {
-      const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=8cd3229158c04407bfce8e73ca96a6db`;
+      const Api_key = import.meta.env.VITE_API_KEY
+      const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${Api_key}`;
 
       try {
         const response = await fetch(url);
